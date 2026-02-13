@@ -241,10 +241,10 @@ body {
 }
 
 .poem-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1rem, 2.2vw, 1.25rem);
-  font-weight: 500;
-  line-height: 1.85;
+  font-family: 'Meddon', cursive;
+  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.9;
   margin: 0;
   text-align: center;
   color: #050403;
