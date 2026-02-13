@@ -1,0 +1,266 @@
+/* Arwah Valentine — base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #1a0a0f;
+}
+
+/* Screens: one visible at a time — full viewport */
+.screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.screen[aria-hidden="true"] {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Screen 1: Landing */
+.screen--landing {
+  position: relative;
+  background: linear-gradient(160deg, #1a0a0f 0%, #2d1b2e 40%, #1a0a0f 100%);
+  color: #fce4ec;
+  padding: 1.5rem;
+}
+
+/* Floating hearts — behind content, non-interactive */
+.hearts {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.hearts .heart {
+  position: absolute;
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  color: #f8bbd9;
+  opacity: 0.45;
+  animation: heartFloat 20s ease-in-out infinite;
+}
+
+.hearts .heart svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Staggered positions and delays — spread across the screen */
+.hearts .heart--1 { left: 8%;  top: 85%; animation-delay: 0s; }
+.hearts .heart--2 { left: 15%; top: 70%; animation-delay: 2s; width: 14px; height: 14px; opacity: 0.35; }
+.hearts .heart--3 { left: 22%; top: 90%; animation-delay: 4s; }
+.hearts .heart--4 { left: 28%; top: 60%; animation-delay: 1s; width: 20px; height: 20px; }
+.hearts .heart--5 { left: 35%; top: 80%; animation-delay: 5s; opacity: 0.5; }
+.hearts .heart--6 { left: 42%; top: 75%; animation-delay: 3s; width: 16px; height: 16px; }
+.hearts .heart--7 { left: 50%; top: 88%; animation-delay: 6s; color: #e91e63; opacity: 0.4; }
+.hearts .heart--8 { left: 58%; top: 65%; animation-delay: 1.5s; }
+.hearts .heart--9 { left: 65%; top: 92%; animation-delay: 4.5s; width: 14px; height: 14px; }
+.hearts .heart--10 { left: 72%; top: 72%; animation-delay: 2.5s; opacity: 0.35; }
+.hearts .heart--11 { left: 78%; top: 78%; animation-delay: 5.5s; width: 20px; height: 20px; }
+.hearts .heart--12 { left: 85%; top: 62%; animation-delay: 0.5s; }
+.hearts .heart--13 { left: 12%; top: 55%; animation-delay: 3.5s; width: 16px; height: 16px; }
+.hearts .heart--14 { left: 45%; top: 95%; animation-delay: 6.5s; opacity: 0.5; }
+.hearts .heart--15 { left: 88%; top: 82%; animation-delay: 2s; width: 14px; height: 14px; }
+.hearts .heart--16 { left: 5%;  top: 40%; animation-delay: 4s; }
+.hearts .heart--17 { left: 92%; top: 45%; animation-delay: 1s; width: 18px; height: 18px; opacity: 0.4; }
+.hearts .heart--18 { left: 38%; top: 50%; animation-delay: 5s; width: 14px; height: 14px; }
+.hearts .heart--19 { left: 62%; top: 58%; animation-delay: 3s; }
+.hearts .heart--20 { left: 18%; top: 30%; animation-delay: 6s; width: 16px; height: 16px; opacity: 0.35; }
+
+@keyframes heartFloat {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.35;
+  }
+  25% {
+    transform: translateY(-25vh) translateX(8px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-50vh) translateX(-5px);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-75vh) translateX(6px);
+    opacity: 0.45;
+  }
+  100% {
+    transform: translateY(-120vh) translateX(0);
+    opacity: 0.2;
+  }
+}
+
+.screen--landing .question,
+.screen--landing .buttons {
+  position: relative;
+  z-index: 1;
+}
+
+.question {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 600;
+  text-align: center;
+  margin: 0 0 2.5rem;
+  max-width: 20ch;
+  line-height: 1.3;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.75rem 1.75rem;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #f8bbd9;
+  outline-offset: 3px;
+}
+
+.btn--yes {
+  background: linear-gradient(135deg, #c2185b 0%, #ad1457 100%);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(194, 24, 91, 0.4);
+}
+
+.btn--yes:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 24px rgba(194, 24, 91, 0.5);
+}
+
+.btn--no {
+  background: rgba(255, 255, 255, 0.12);
+  color: #f8bbd9;
+  border: 1px solid rgba(248, 187, 217, 0.3);
+}
+
+.btn--no:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* No button is moved via transform in JS — use transition for smooth run-away */
+.btn--no {
+  transition: transform 0.25s ease-out, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Screen 2: Old-school letter — parchment + blurred photo fixed, only poem scrolls (parallax) */
+.screen--poem {
+  background: #2c2419;
+  color: #2a2020;
+  padding: 2rem 1rem;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter {
+  position: relative;
+  width: 100%;
+  max-width: 42rem;
+  height: 90vh;
+  margin: 0 auto;
+  overflow: hidden;
+  background: url('images/parchment.png') center / cover no-repeat;
+  border-radius: 2px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.letter-photo {
+  position: absolute;
+  inset: 0;
+  background: url('images/photo.jpg') center / cover no-repeat;
+  filter: blur(8px);
+  opacity: 0.7;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.poem-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2.5rem 1.75rem 3rem;
+}
+
+.poem-card {
+  max-width: 28rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.poem-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  line-height: 1.85;
+  margin: 0;
+  text-align: center;
+  color: #0d0a08;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.6), 0 0 2px rgba(0, 0, 0, 0.25);
+}
+
+/* Screen 2 fade-in when shown */
+.screen--poem:not([aria-hidden="true"]) .poem-card {
+  animation: poemFadeIn 0.6s ease 0.2s both;
+}
+
+@keyframes poemFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
