@@ -189,8 +189,9 @@ body {
 }
 
 /* Screen 2: Old-school letter — parchment + blurred photo fixed, only poem scrolls (parallax) */
+/* Same dark purple theme as home — letter and pic unchanged */
 .screen--poem {
-  background: #2c2419;
+  background: linear-gradient(160deg, #1a0a0f 0%, #2d1b2e 40%, #1a0a0f 100%);
   color: #2a2020;
   padding: 2rem 1rem;
   overflow: hidden;
@@ -242,11 +243,23 @@ body {
 .poem-text {
   font-family: 'Cormorant Garamond', serif;
   font-size: clamp(1rem, 2.2vw, 1.25rem);
+  font-weight: 500;
   line-height: 1.85;
   margin: 0;
   text-align: center;
-  color: #0d0a08;
-  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.6), 0 0 2px rgba(0, 0, 0, 0.25);
+  color: #050403;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4), 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.poem-signoff {
+  display: block;
+  margin-top: 0.5em;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  font-weight: 400;
+  color: #050403;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.4), 0 1px 4px rgba(0, 0, 0, 0.35);
+  letter-spacing: 0.02em;
 }
 
 /* Screen 2 fade-in when shown */
